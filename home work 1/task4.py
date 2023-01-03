@@ -1,9 +1,8 @@
 """
 Задача №4.
-Написать метод bananas, который принимает на вход строку и возвращеет  
+Написать метод bananas, который принимает на вход строку и возвращает  
 количество слов 'banana' в строке.
 """
-
 
 def bananas(s: str) -> set:
     result = set()
@@ -50,9 +49,9 @@ def bananas(s: str) -> set:
     return result
 
 
-print("banann: -> " + str(bananas("banann")), end='\n\n')
+#print("banann: -> " + str(bananas("banann")), end='\n\n')
 print("banana: -> " + str(bananas("banana")), end='\n\n')
-print("bbananana: -> " + str(bananas("bbananana")), end='\n\n')
+#print("bbananana: -> " + str(bananas("bbananana")), end='\n\n')
 
 '''assert bananas("banann") == set()
 assert bananas("banana") == {"banana"}
