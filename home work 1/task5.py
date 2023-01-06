@@ -35,24 +35,31 @@ def count_find_num(primesL: list, limit: int) -> list:
 
 
     def add_a_divisors_to_the_end(lst: list) -> list:
+        list_of_additional_divisors = []
         for j in lst:
-            list_of_additional_divisors = []
+        #while j < len(lst):
+            #print(f'j: {j} ')
             len_lst = len(j)
             i = 0
             while i < len_lst:
+                #print(f'i: {i} ', end='')
                 ola = [j[i]]
                 ola.extend(j)
+                #print(f'ola: {ola}')
                 list_of_additional_divisors.append(ola)
+                #print(list_of_additional_divisors)
                 i += 1
+        #print(list_of_additional_divisors)
         
         return list_of_additional_divisors
 
 
-    i = 10
+    i = 4
     while i > 0:
         additional_ending = add_a_divisors_to_the_end(list_of_prime_factors)
         list_of_prime_factors.extend(additional_ending)
         i -= 1
+    print(list_of_prime_factors)
 
     recurring_multipliersfind = find_multipliers_in_a_row(primesL, max_value)
     list_of_prime_factors.extend(recurring_multipliersfind )
@@ -60,7 +67,7 @@ def count_find_num(primesL: list, limit: int) -> list:
 
     ola = []
     for j in list_of_prime_factors:
-        if math.prod(j) <=  max_value:
+        if math.prod(j) <=  limit:
             ola.append(sorted(j))
 
     lala = []
