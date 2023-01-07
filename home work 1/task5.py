@@ -6,20 +6,9 @@
 предела, которые имеют вссе и тольк простые множители простыж чисел primeesL.
 """
 import math
-import copy
 
 def count_find_num(primesL: list, limit: int) -> list:
     list_of_prime_factors: list = [primesL]
-
-    def find_multipliers_in_a_row(lst: list, limit: int) -> list:
-        list_of_recurring_multipliers = []
-        for i in lst:
-            ola = copy.copy(lst)
-            while (math.prod(ola) *  i ) <= limit:            
-                ola.append(i)
-                list_of_recurring_multipliers.append(copy.copy(ola))
-        return list_of_recurring_multipliers
-
 
     def add_a_divisors_to_the_end(lst: list) -> list:
         list_of_additional_divisors = []
@@ -35,7 +24,7 @@ def count_find_num(primesL: list, limit: int) -> list:
         return list_of_additional_divisors
         
 
-    def find_max_multiplication(divisors_list: list, limit: int) -> int:
+    def find_max_multiplication(divisors_list: list) -> int:
         max_multiplication_value = math.prod(primesL)
         for i in divisors_list:
             if math.prod(i) > max_multiplication_value:
@@ -43,15 +32,11 @@ def count_find_num(primesL: list, limit: int) -> list:
         return max_multiplication_value
 
 
-    i = len(primesL) + 2
+    i = len(primesL) + 3
     while i > 0:
         additional_ending = add_a_divisors_to_the_end(list_of_prime_factors)
         list_of_prime_factors.extend(additional_ending)
         i -= 1
-
-    recurring_multipliersfind = find_multipliers_in_a_row(primesL, limit)
-    list_of_prime_factors.extend(recurring_multipliersfind )
-
 
     multipliers_less_limit = []
     for j in list_of_prime_factors:
@@ -63,7 +48,7 @@ def count_find_num(primesL: list, limit: int) -> list:
         if i not in multipliers_without_repeats:
             multipliers_without_repeats.append(i)
 
-    max_value = find_max_multiplication(multipliers_without_repeats, limit)
+    max_value = find_max_multiplication(multipliers_without_repeats)
     len_of_multiplieк_list = len(multipliers_without_repeats)
     if len_of_multiplieк_list == 0:
         return []
