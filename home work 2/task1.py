@@ -8,17 +8,21 @@
 """
 
 class CyclicIterator:
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, stop_value: int):
+        self.current = -1
+        self.stop_value = len(stop_value) - 1
 
 
     def __iter__(self):
-        return self.value
+        return self
 
 
     def __next__(self):
-        return self.value
-
+        if self.current < self.stop_value:
+            self.current += 1
+        else:
+            self.current = 0
+        return self.current 
 
 
 cyclic_iterator = CyclicIterator(range(3))
