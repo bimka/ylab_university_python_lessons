@@ -9,27 +9,19 @@
 """
 cache_dict: dict[int: int] = {1: 2, 3: 6, 7: 14, 12: 24}
 
-def cache(cache_dict: dict):
-    print(" cache has been worked")
-    def cache_decorator(func):
-        #print('cache_decorator has been worked!')
-        def wrapper():
-            print('wrapper has been worked')
-            #print(kwargs)
-            """if args in cache_dict:
-                print(f'{args} loaded from cache')
-            else:
-                cache_dict[args] = func(*args, **kwargs)"""
-        return wrapper
-    return cache_decorator
+def cache_decorator(func):
+    def wrapper(*args, **kwargs):
+        if args[0] in cache_dict:
+            print(f'{args[0]} loaded from cache')
+        else:
+            cache_dict[args[0]] = func(*args, **kwargs)
+    return wrapper
 
-@cache
+@cache_decorator
 def multiplier(number: int) -> int:
     return number * 2
 
 for i in range(10):
     multiplier(i)
-
-print(cache_dict)
 
 
